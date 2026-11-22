@@ -17,38 +17,41 @@ public class PacienteRepository {
     }
 
     public void salvar(Paciente paciente) {
-     String sql = """
-    INSERT INTO pacientes (
-        nome,
-        cpf,
-        data_nascimento,
-        email,
-        telefone,
-        cidade,
-        estado,
-        numero_prontuario,
-        convenio,
-        contato_emergencia,
-        telefone_emergencia
-    )
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """;
+    String sql = """
+        INSERT INTO pacientes (
+            nome,
+            cpf,
+            data_nascimento,
+            email,
+            telefone,
+            cidade,
+            estado,
+            data_cadastro,
+            status,
+            numero_prontuario,
+            convenio,
+            contato_emergencia,
+            telefone_emergencia
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), 'ATIVO', ?, ?, ?, ?)
+        """;
 
     jdbcTemplate.update(
-    sql,
-    paciente.getNome(),
-    paciente.getCpf(),
-    paciente.getDataNascimento(),
-    paciente.getEmail(),
-    paciente.getTelefone(),
-    paciente.getCidade(),
-    paciente.getEstado(),
-    paciente.getNumeroProntuario(),
-    paciente.getConvenio(),
-    paciente.getContatoEmergencia(),
-    paciente.getTelefoneEmergencia()
-     );
-    }
+        sql,
+        paciente.getNome(),
+        paciente.getCpf(),
+        paciente.getDataNascimento(),
+        paciente.getEmail(),
+        paciente.getTelefone(),
+        paciente.getCidade(),
+        paciente.getEstado(),
+        paciente.getNumeroProntuario(),
+        paciente.getConvenio(),
+        paciente.getContatoEmergencia(),
+        paciente.getTelefoneEmergencia()
+    );
+}
+    
 
     public Optional<Paciente> buscarPorId(Long id) {
      String sql = """

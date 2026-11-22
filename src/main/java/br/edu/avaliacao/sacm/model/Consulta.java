@@ -79,10 +79,10 @@ public class Consulta {
                " | Status: " + status;
     }
 
-    // Getters
-    public Long getId() {
-        return id;
-    }
+    
+   public Long getId() {
+    return id;
+}
 
     public Medico getMedico() {
         return medico;
